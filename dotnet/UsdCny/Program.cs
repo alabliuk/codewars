@@ -1,5 +1,7 @@
 ﻿public static class Kata
 {
+    //--> https://www.codewars.com/kata/5977618080ef220766000022
+
     public static void Main()
     {
         Console.WriteLine(Usdcny(15));
