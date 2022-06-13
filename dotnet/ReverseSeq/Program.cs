@@ -14,7 +14,7 @@ public static class Kata
         var seq = new int[n];
         int aux = n;
 
-        for(int i = 0; i < n; i++)
+        for (int i = 0; i < n; i++)
         {
             seq[i] = aux;
             aux--;
