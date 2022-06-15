@@ -1,5 +1,7 @@
 ﻿public class Kata
 {
+	//--> https://www.codewars.com/kata/55f8a9c06c018a0d6e000132
+
 	public static void Main()
 	{
 		Console.WriteLine(ValidatePin("1234")); //true
