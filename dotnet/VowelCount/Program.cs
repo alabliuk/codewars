@@ -4,15 +4,11 @@ public static class Kata
 {
     public static void Main()
     {
-        GetVowelCount("abracadabrae");
+        GetVowelCount("abracadabra");
     }
 
     public static int GetVowelCount(string str)
     {
-        int vowelCount = 0;
-
-        vowelCount = Regex.Matches(str, @"[aeiou]").Count;
-
-        return vowelCount;
+        return Regex.Matches(str, @"[aeiou]").Count;
     }
 }
