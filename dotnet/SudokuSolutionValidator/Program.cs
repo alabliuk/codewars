@@ -18,11 +18,25 @@
 		//}
 		//);
 
+		//ValidateSolution(new int[][]
+		//{
+		//	new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9},
+		//	new int[] {2, 3, 1, 5, 6, 4, 8, 9, 7},
+		//	new int[] {3, 1, 2, 6, 4, 5, 9, 7, 8},
+		//	new int[] {4, 5, 6, 7, 8, 9, 1, 2, 3},
+		//	new int[] {5, 6, 4, 8, 9, 7, 2, 3, 1},
+		//	new int[] {6, 4, 5, 9, 7, 8, 3, 1, 2},
+		//	new int[] {7, 8, 9, 1, 2, 3, 4, 5, 6},
+		//	new int[] {8, 9, 7, 2, 3, 1, 5, 6, 4},
+		//	new int[] {9, 7, 8, 3, 1, 2, 6, 4, 5},
+		//}
+		//);
+
 		ValidateSolution(new int[][]
 		{
 			new int[] {1, 2, 3, 4, 5, 6, 7, 8, 9},
-			new int[] {2, 3, 1, 5, 6, 4, 8, 9, 7},
-			new int[] {3, 1, 2, 6, 4, 5, 9, 7, 8},
+			new int[] {4, 5, 6, 5, 6, 4, 8, 9, 7},
+			new int[] {7, 8, 9, 6, 4, 5, 9, 7, 8},
 			new int[] {4, 5, 6, 7, 8, 9, 1, 2, 3},
 			new int[] {5, 6, 4, 8, 9, 7, 2, 3, 1},
 			new int[] {6, 4, 5, 9, 7, 8, 3, 1, 2},
@@ -49,9 +63,18 @@
 
 	public static bool ValidateSolution(int[][] board)
 	{
-		bool validation = HorizontalValidation(board);
-		validation = VerticalValidation(board);
-		return validation;
+		if (HorizontalValidation(board))
+		{
+			if (VerticalValidation(board))
+			{
+				if (QuadrantMain(board))
+				{
+					return true;
+				}
+			}
+		}
+
+		return false;
 	}
 
 	public static bool HorizontalValidation(int[][] board)
@@ -86,6 +109,44 @@
 		return true;
 	}
 
+	public static bool QuadrantMain(int[][] board)
+	{
+		for (int eixoY = 0; eixoY < board.Length; eixoY += 3)
+		{
+			for (int eixoX = 0; eixoX < board.Length; eixoX += 3)
+			{
+				var result = QuadrantValidation(board, eixoX, eixoY);
+
+				if (!result)
+					return false;
+			}
+		}
+
+		return true;
+	}
+
+	public static bool QuadrantValidation(int[][] board, int eixoX, int eixoY)
+	{
+		int[] newArray = new int[board.Length];
+		int i = 0; int j = 0; int _eixoX = eixoX;
+
+		for (int quad = 0; quad < 3; quad++)
+		{
+			for (; j < 3; eixoX++, i++, j++)
+			{
+				newArray[i] = board[eixoX][eixoY];
+			}
+			eixoX = _eixoX;
+			eixoY++;
+			j = 0;
+		}
+
+		if (CountDuplicate(newArray) > 0)
+			return false;
+
+		return true;
+	}
+
 	public static int CountDuplicate(int[] intArray)
 	{
 		return intArray.GroupBy(x => x)
@@ -93,11 +154,5 @@
 					.Select(x => x.Key)
 					.ToList()
 					.Count();
-	}
-
-	public static bool QuadrantValidation()
-	{
-
-		return true;
 	}
 }
