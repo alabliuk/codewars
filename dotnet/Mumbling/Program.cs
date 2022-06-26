@@ -1,6 +1,4 @@
-﻿using System;
-
-public class Accumul
+﻿public class Accumul
 {
     //-> https://www.codewars.com/kata/5667e8f4e3f572a8f2000039
 
@@ -11,7 +9,7 @@ public class Accumul
 
     public static string Accum(string s)
     {
-        char[] newArray = s.ToCharArray();
+        char[] newArray = s.ToLower().ToCharArray();
         string accumString = string.Empty;
         int round = 1;
 
@@ -29,6 +27,6 @@ public class Accumul
             round++;
         }
 
-        return accumString.Substring(0, accumString.Length - 2);
+        return accumString.Substring(0, accumString.Length - 1);
     }
 }
