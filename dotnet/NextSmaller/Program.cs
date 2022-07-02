@@ -5,12 +5,18 @@ public class Kata
 
     public static void Main()
     {
+        //-- ok -----------------------
         //NextSmaller(21); //12
         //NextSmaller(531); //513
         //NextSmaller(2071); //2017
         //NextSmaller(123456798); //123456789
+        //NextSmaller(907); //790
+        //NextSmaller(1027);
 
-        NextSmaller(907); //790
+        //-- error ------------------
+        //NextSmaller(315);
+        NextSmaller(414);
+
     }
 
     public static long NextSmaller(long n)
@@ -22,13 +28,13 @@ public class Kata
         for (int i = 1; i <= charN.Length; i++)
         {
             var aux = result[charN.Length - i];
-            result[charN.Length - i] = result[charN.Length - 1];
-            result[charN.Length - 1] = aux;
+            result[charN.Length - i] = result[charN.Length - 2];
+            result[charN.Length - 2] = aux;
 
             string strResult = new string(result);
             long tempResult = Convert.ToInt64(strResult);
 
-            if (finalResult > tempResult)
+            if (finalResult > tempResult && tempResult.ToString().Length == n.ToString().Length)
                 return tempResult;
         }
 
@@ -40,5 +46,5 @@ public class Kata
 }
 
 //var aux = result[charN.Length - i];
-//result[charN.Length - i] = result[charN.Length - 1];
-//result[charN.Length - 1] = aux;
+//result[charN.Length - i] = result[charN.Length - 2];
+//result[charN.Length - 2] = aux;
