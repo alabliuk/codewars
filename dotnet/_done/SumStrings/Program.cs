@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Numerics;
+
 public static class Kata
 {
     //--> https://www.codewars.com/kata/5324945e2ece5e1f32000370
@@ -9,7 +10,8 @@ public static class Kata
 
     public static string sumStrings(string a, string b)
     {
-        var x = Convert.ToUInt32(a) + Convert.ToUInt32(b);
-        return x.ToString();
+        BigInteger.TryParse(a, out BigInteger nA);
+        BigInteger.TryParse(b, out BigInteger nB);
+        return (nA + nB).ToString();
     }
 }
