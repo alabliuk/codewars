@@ -1,5 +1,6 @@
 ﻿public class Kata
 {
+	//--> https://www.codewars.com/kata/5ff6060ed14f4100106d8e6f
     public static void Main()
     {
         Uncensor("*h*s *s v*ry *tr*ng*", "Tiiesae"); //"This is very strange",
